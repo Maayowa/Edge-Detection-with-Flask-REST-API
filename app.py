@@ -51,7 +51,6 @@ def get_data():
     # Store uploaded file into 'static' folder 
     filepath = os.path.join(\
                             os.getcwd(), app.config['UPLOAD_FOLDER'],filename)
-    print(filepath, thr_hi, thr_low)
     file.save(filepath)
 
     # Perform edge detection internally and return transofrmed image
