@@ -11,7 +11,8 @@ import imghdr
 
 app = Flask(__name__)
 app.config['UPLOAD_EXTENSIONS'] = ['jpg', 'png', 'jpeg']
-app.config['UPLOAD_FOLDER'] = "Edge_detect\static" 
+app.config['UPLOAD_FOLDER'] = "..\static"
+
 
 def validate(url):
     filename = url.split("/")[-1]
@@ -21,19 +22,22 @@ def validate(url):
         abort(404)
     return filename
 
+
 def edge_detection(path, thresh1, thresh2):
     img = cv2.imread(path, 0)
     img = np.uint8(img)
-    img = cv2.blur(img, (3,3))
+    img = cv2.blur(img, (3, 3))
     canny = cv2.Canny(img, thresh1, thresh2)
     return canny
 
-@app.route('/', methods = ['GET', 'POST'])
+
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('index.html', img_in = None, img_out = None)
+    return render_template('index.html', img_in=None, img_out=None)
 # test link https://i.ytimg.com/vi/hIRjlG-gbuI/maxresdefault.jpg
 
-@app.route('/detect', methods = ['POST'])
+
+@app.route('/detect', methods=['POST'])
 def get_data():
     thr_hi = int(request.form['uthresh'])
     thr_low = int(request.form['lthresh'])
@@ -48,21 +52,21 @@ def get_data():
         file = request.files['image']
         filename = secure_filename(file.filename)
         print(filename)
-    # Store uploaded file into 'static' folder 
-    filepath = os.path.join(\
-                            os.getcwd(), app.config['UPLOAD_FOLDER'],filename)
+    # Store uploaded file into 'static' folder
+    filepath = os.path.join(
+        os.getcwd(), app.config['UPLOAD_FOLDER'], filename)
+    print(filepath, thr_hi, thr_low)
     file.save(filepath)
 
     # Perform edge detection internally and return transofrmed image
     out = edge_detection(filepath, thr_hi, thr_low)
     out_name = "out_" + filename
-    outpath = os.path.join(\
-                            os.getcwd(), app.config['UPLOAD_FOLDER'],out_name)
+    outpath = os.path.join(
+        os.getcwd(), app.config['UPLOAD_FOLDER'], out_name)
     cv2.imwrite(outpath, out)
-    
-    return render_template('index.html', img_in = filename,  img_out = out_name)
-    
-    
-    
-if __name__=='__main__':
+
+    return render_template('index.html', img_in=filename,  img_out=out_name)
+
+
+if __name__ == '__main__':
     app.run()
