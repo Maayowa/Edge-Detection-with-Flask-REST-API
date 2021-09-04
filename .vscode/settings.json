@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "C:\\Users\\Hugo-Tech-482\\Anaconda3\\envs\\tensorflow_session\\python.exe",
+    "python.workspaceSymbols.exclusionPatterns": [
+        "**/site-packages/**",
+        "**/.vscode/**"
+    ],
+    "search.exclude": {
+        ".vscode": true,
+        "**/*.vscode": true
+    }
+}
