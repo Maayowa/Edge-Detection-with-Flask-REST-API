@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Cartoonization Endpoint</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<body>
+    <div style="color:whitesmoke;">
+        <h1 class="display-4 font-weight-normal">Image Cartoonization Endpoint</h1>
+        <p class="lead font-weight-normal" , style="padding-bottom: 5px;">Upload a file and choose what kind of cartoonized image you'd like to see</p>
+
+        <hr>
+    </div>
+
+    <div class="container">
+
+
+
+        <div class="wrapper">
+
+            <div class="image">
+                <img src="" alt="">
+            </div>
+
+            <div class="content">
+                <div class="icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="text">
+                    No file chosen, yet!
+                </div>
+            </div>
+
+            <div id="cancel-btn">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="file-name">
+                File name here
+            </div>
+        </div>
+
+
+        <!-- <div class="custom-file" , style="padding-top: 30px;padding-bottom: 20px;">
+                <input type="file" class="custom-file-input" name="image">
+            </div> -->
+        <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
+
+
+
+
+    </div>
+
+    <form method="POST" class="form-group" enctype=multipart/form-data>
+
+
+        <input id="default-btn" type="file" name="image" hidden>
+
+        <div class="submit">
+            <button type="submit" formaction="/cartoonize" class="submit-btn">Standard Cartoonize</button>
+            <button type="submit" formaction="/bwcartoonize" class="submit-btn">Grayscale Cartoonize</button>
+
+        </div>
+
+    </form>
+
+
+    <script src="../static/script.js"></script>
+
+</body>
+
+</html>

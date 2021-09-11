@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Cartonization Result</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../static/results/style.css">
+</head>
+
+<body>
+    <div style="color:whitesmoke; text-align: center; margin: 15px;">
+        <h1 class="display-4 font-weight-normal">Image Cartoonization Results</h1>
+        <p class="lead font-weight-normal" , style="padding-bottom: 5px;">Compare Cartoonized Image (Image may have been cropped or resized).</p>
+
+        <hr>
+    </div>
+
+    <div id="image-comparison-slider">
+        <img src="{{ original }}" alt="Before">
+        <div class="img-wrapper">
+            <img src="{{ result }}" alt="After">
+        </div>
+
+        <span class="label label-before">Before</span>
+        <span class="label label-after">After</span>
+
+        <div class="handle">
+            <div class="handle-line"></div>
+            <div class="handle-circle">
+                <i class="fas fa-chevron-left"></i>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="handle-line"></div>
+        </div>
+
+
+    </div>
+
+    <div class="getImage">
+        <a target="_blank" rel="noopener noreferrer" href="{{ result }}" ;>
+            <button class="submit" type="submit">download cartoonized image</button>
+        </a>
+
+    </div>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <script src="../static/results/main.js"></script>
+</body>
+
+</html>
