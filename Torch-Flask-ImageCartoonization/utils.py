@@ -40,19 +40,7 @@ def infer(model, img_path, load_size = 256):
     # Load in image
     input_image = Image.open(img_path).convert("RGB")
 
-    # resize, retain aspect ratio
-    h, w = input_image.size
-
-    ratio = h * 1.0 / w
-
-    if ratio > 1:
-        h = load_size
-        w = int( h * 1.0/ ratio)
-    else:
-        w = load_size
-        h = int(w * ratio)
-
-    input_image = input_image.resize((h, w), Image.BICUBIC)
+    input_image = input_image.resize((load_size, load_size), Image.BICUBIC)
     raw_image = np.asarray(input_image)
 
     # Preprocess image for transformation
