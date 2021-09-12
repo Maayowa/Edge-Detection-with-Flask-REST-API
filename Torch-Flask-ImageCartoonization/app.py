@@ -79,7 +79,7 @@ class Cartoonize(Resource):
             #original = base64.b64encode( file.read() ).decode()
             # Pass image through model for an output
             faceimage = infer(model, image)
-            #faceimage = faceimage.resize(size, Image.LANCZOS)
+            faceimage = faceimage.resize(size, Image.LANCZOS)
             file_link = send_file(faceimage, name + "_Cartoon", True)
             #fileobj.seek(0)
 
@@ -113,7 +113,7 @@ class GrayCartoonize(Resource):
             faceimage = infer(model, image)
             print("Transformed")
             cv_img = np.array(faceimage)
-            #faceimage = faceimage.resize(size, Image.LANCZOS)
+            faceimage = faceimage.resize(size, Image.LANCZOS)
             cv_img = cv.cvtColor(cv_img, cv.COLOR_BGR2GRAY)
             image = Image.fromarray(cv_img)
             file_link = send_file(image, name + "_bwcartoon", True)
