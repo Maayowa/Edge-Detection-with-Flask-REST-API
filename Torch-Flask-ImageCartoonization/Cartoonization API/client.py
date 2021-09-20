@@ -20,4 +20,4 @@ img_bytes = io.BytesIO(img)
 img = Image.open(img_bytes)
 img.show()
 
-"Torch-Flask-ImageCartoonization/Cartoonization API"
+
