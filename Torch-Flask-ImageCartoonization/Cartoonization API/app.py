@@ -11,6 +11,7 @@ Check https://github.com/SystemErrorWang/FacialCartoonization to read about the 
 from PIL import Image
 import cv2 as cv
 import os
+import json
 import base64
 import io
 from flask.json import jsonify
@@ -67,23 +68,27 @@ class Cartoonize(Resource):
         if ext.lower() not in FILE_UPLOAD_TYPES:
             return Response({"error": "Unsupported file type"}, 200, mimetype="application/json")
 
-        try:
-            file = Image.open( image.stream )
-            size = file.size
+        #try:
+        file = Image.open( image.stream )
+        size = file.size
 
-            # Pass image through model for an output
-            faceimage = infer(model, image)
-            faceimage = faceimage.resize(size, Image.LANCZOS)
+        # Pass image through model for an output
+        faceimage = infer(model, image)
+        faceimage = faceimage.resize(size, Image.LANCZOS)
 
-            _ = uploader(faceimage, name + "_Cartoon", True)
-            file_byte = uploader(faceimage)
-            file_byte.seek(0)
+        _ = uploader(faceimage, name + "_Cartoon", True)
+        file_byte = uploader(faceimage)
+        file_encode = base64.b64encode( file_byte.getvalue() ).decode()
+        
+        
+        return Response(
+            response=json.dumps({"img": file_encode, "warning" : "unsupported file format."}),
+            status=200,
+            mimetype="application/json"
+        )
             
-            
-            return send_file(file_byte, mimetype="image/PNG")
-            
-        except:
-            return Response({"error": "Incompatible image format type"}, 200, mimetype="application/json")
+        #except:
+        #    return Response({"error": "Incompatible image format type"}, 200, mimetype="application/json")
         
 
 class GrayCartoonize(Resource):
@@ -114,9 +119,14 @@ class GrayCartoonize(Resource):
             image = Image.fromarray(cv_img)
             _ = uploader(image, name + "_bwcartoon", True)
             file_byte = uploader(image)
-            file_byte.seek(0)
-
-            return send_file(file_byte, mimetype="image/PNG")
+            file_encode = base64.b64encode( file_byte.getvalue() ).decode()
+            
+            
+            return Response(
+                response=json.dumps({"img": file_encode, "warning" : "unsupported file format."}),
+                status=200,
+                mimetype="application/json"
+            )
 
         
         except:

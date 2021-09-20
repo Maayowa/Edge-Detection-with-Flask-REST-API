@@ -80,7 +80,9 @@ def make_edge():
 
         return send_file(fileobj, mimetype="image/PNG")
 
-    return Response(response= jsonpickle.encode({"error": "Invalid file input"}), status=404, mimetype="application/json")
+    return Response(
+        response= jsonpickle.encode({"error": "Invalid file input"}),
+         status=404, mimetype="application/json")
 
 
 @app.route('/cartoonize', methods=['POST'])
