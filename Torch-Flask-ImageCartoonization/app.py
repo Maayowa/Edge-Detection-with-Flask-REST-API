@@ -75,19 +75,20 @@ class Cartoonize(Resource):
         try:
             file = Image.open( image.stream )
             size = file.size
-            original = send_file(file, name, True)
-            #original = base64.b64encode( file.read() ).decode()
+            file_byte = io.BytesIO()
+            file.save(file_byte, "PNG")
+            original = base64.b64encode( file_byte.getvalue() ).decode()
             # Pass image through model for an output
             faceimage = infer(model, image)
             faceimage = faceimage.resize(size, Image.LANCZOS)
             file_link = send_file(faceimage, name + "_Cartoon", True)
-            #fileobj.seek(0)
+            
 
             
             headers = {'Content-Type': 'text/html'}
-            return make_response(render_template('result.html', original = original, result = file_link),200,headers)
+            return make_response(render_template('result.html', original = "data:image/png;base64," + original, result = file_link),200,headers)
 
-        
+            
         except:
             return Response({"error": "Incompatible image format type"}, 200, mimetype="application/json")
         
@@ -109,7 +110,9 @@ class GrayCartoonize(Resource):
             # Pass image through model for an output and convert to grayscale
             file = Image.open( image.stream )
             size = file.size
-            original = send_file(file, name, True)
+            file_byte = io.BytesIO()
+            file.save(file_byte, "PNG")
+            original = base64.b64encode( file_byte.getvalue() ).decode()
             faceimage = infer(model, image)
             print("Transformed")
             faceimage = faceimage.resize(size, Image.LANCZOS)
@@ -120,7 +123,7 @@ class GrayCartoonize(Resource):
 
             
             headers = {'Content-Type': 'text/html'}
-            return make_response(render_template('result.html', original = original, result = file_link),200,headers)
+            return make_response(render_template('result.html', original = "data:image/png;base64," + original, result = file_link),200,headers)
 
             #return send_file(fileobj, mimetype="image/PNG")
 
