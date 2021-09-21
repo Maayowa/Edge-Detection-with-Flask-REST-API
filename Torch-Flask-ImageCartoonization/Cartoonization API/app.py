@@ -82,7 +82,7 @@ class Cartoonize(Resource):
             
             
             return Response(
-                response=json.dumps({"img": file_encode, "warning" : "unsupported file format."}),
+                response=json.dumps({"img": file_encode, "warning" : ""}),
                 status=200,
                 mimetype="application/json"
             )
@@ -106,7 +106,7 @@ class GrayCartoonize(Resource):
 
         try:
             # Pass image through model for an output and convert to grayscale
-            file = Image.open( image.stream )
+            file = Image.open( image )
             size = file.size
 
             faceimage = infer(model, image)
@@ -123,7 +123,7 @@ class GrayCartoonize(Resource):
             
             
             return Response(
-                response=json.dumps({"img": file_encode, "warning" : "unsupported file format."}),
+                response=json.dumps({"img": file_encode, "warning" : ""}),
                 status=200,
                 mimetype="application/json"
             )
