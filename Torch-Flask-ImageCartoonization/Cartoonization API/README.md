@@ -22,7 +22,7 @@ image: image to be converted to cartoon form
 ```
 
 
-
+<br>
 
 ### POST	GrayscaleCartoon Endpoint
 
