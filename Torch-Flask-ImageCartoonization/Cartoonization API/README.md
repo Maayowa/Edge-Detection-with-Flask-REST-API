@@ -29,7 +29,7 @@ image: image to be converted to cartoon form
 Returns a grayscale (black and white) cartoon version of the input image
 
 ```
-https://maayowa-torchtoon.herokuapp.com/cartoonize
+https://maayowa-torchtoon.herokuapp.com/bwcartoonize
 ```
 
 **API Arguments:**
