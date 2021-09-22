@@ -15,11 +15,13 @@ Provides support for both:
 https://maayowa-torchtoon.herokuapp.com/cartoonize
 ```
 
-API Arguments:
+**API Arguments:**
 
 ```
 image: image to be converted to cartoon form
 ```
+
+
 
 
 ### POST	GrayscaleCartoon Endpoint
