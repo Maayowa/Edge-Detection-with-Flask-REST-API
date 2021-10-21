@@ -4,7 +4,6 @@ from PIL import Image
 import base64
 
 host = "https://maayowa-torchtoon.herokuapp.com/cartoonize"
-lhost = "http://127.0.0.1:5000/cartoonize"
 
 headers = {"content_type":"multipart/form-data"}
 files = {"image": ("Ronaldo.jpg", open("./Ronaldo.jpg", "rb"))}

@@ -15,19 +15,21 @@ Provides support for both:
 https://maayowa-torchtoon.herokuapp.com/cartoonize
 ```
 
-API Arguments:
+**API Arguments:**
 
 ```
 image: image to be converted to cartoon form
 ```
 
 
+<br>
+
 ### POST	GrayscaleCartoon Endpoint
 
 Returns a grayscale (black and white) cartoon version of the input image
 
 ```
-https://maayowa-torchtoon.herokuapp.com/cartoonize
+https://maayowa-torchtoon.herokuapp.com/bwcartoonize
 ```
 
 **API Arguments:**
